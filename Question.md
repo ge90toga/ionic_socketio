@@ -48,3 +48,39 @@ $scope.data and Users.username here because if there is not there will be no exp
 to why the user count can be updated real-time. Am I correct?
 (2) usernames is any array, why not simply use array length to track user count rather than 
 assign a numUsers property to it? It seems just weird.
+
+
+Seems Like I have an answer to (1), the $scope.data = Users.getUsers() gets a reference of 'usernames' in User factory (copy by reference in javascript + closure). Therefore $scope.data and usernames points to the same memory address. 'usernames' updates is essentially updating $scope.data!  I wrote this to verify my reasoning:
+```javascript
+function User() {
+    var usernames = [];
+    usernames.numUsers = 0;
+    // return an object
+    return {
+        getUsers: function(){
+            return usernames;
+        },
+        addUsername: function(username){
+            usernames.push(username);
+        },
+        deleteUsername: function(username){
+            var index = usernames.indexOf(username);
+            if(index != -1){
+                usernames.splice(index, 1);
+            }
+        },
+        setNumUsers: function(data){
+            usernames.numUsers = data.numUsers;
+        }
+    };
+}
+
+var users = User();
+var data = users.getUsers();
+users.setNumUsers({numUsers:1});
+console.log('number of users is: '+data.numUsers); //outputs 1
+```
+
+
+But that doesn't answer my second question. 
+
