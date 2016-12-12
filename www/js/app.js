@@ -16,7 +16,21 @@ angular.module('chat', ['ionic', 'btford.socket-io', 'chat.controllers', 'chat.s
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .directive('hideTabs', function($rootScope) {
+    return {
+      restrict: 'A',
+      link: function($scope) {
+        $rootScope.hideTabs = 'tabs-item-hide';
+        $scope.$on('$destroy', function() {
+          $rootScope.hideTabs = '';
+        });
+      }
+    };
+  })
+
+  .config(function ($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+
+    $ionicConfigProvider.views.transition('none');
 
     $stateProvider
 
@@ -64,7 +78,7 @@ angular.module('chat', ['ionic', 'btford.socket-io', 'chat.controllers', 'chat.s
         url: '/users',
         views: {
           'tab-users': {
-            templateUrl: 'templates/tab-users.html',
+            templateUrl: 'templates/tab-users.html'
           }
         }
       })
