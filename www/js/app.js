@@ -43,7 +43,8 @@ angular.module('chat', ['ionic', 'btford.socket-io', 'chat.controllers', 'chat.s
         params: {username: {value: null}},
         views: {
           'tab-chats': {
-            templateUrl: 'templates/tab-chats.html',
+            //templateUrl: 'templates/tab-chats.html',
+            templateUrl: 'templates/tab-chat-temp.html',
             controller: 'ChatCtrl'
           }
         }
@@ -69,6 +70,6 @@ angular.module('chat', ['ionic', 'btford.socket-io', 'chat.controllers', 'chat.s
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/chats/');
+    $urlRouterProvider.otherwise('/tab/chatlist');
 
   });
