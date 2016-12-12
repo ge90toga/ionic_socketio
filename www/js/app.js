@@ -38,13 +38,23 @@ angular.module('chat', ['ionic', 'btford.socket-io', 'chat.controllers', 'chat.s
         }
       })
 
-      .state('tab.chats', {
+      // .state('tab.chats', {
+      //   url: '/chats/{username}',
+      //   params: {username: {value: null}},
+      //   views: {
+      //     'tab-chats': {
+      //       //templateUrl: 'templates/tab-chats.html',
+      //       templateUrl: 'templates/tab-chat-temp.html',
+      //       controller: 'ChatCtrl'
+      //     }
+      //   }
+      // })
+      .state('tab.chat-detail', {
         url: '/chats/{username}',
         params: {username: {value: null}},
         views: {
-          'tab-chats': {
-            //templateUrl: 'templates/tab-chats.html',
-            templateUrl: 'templates/tab-chat-temp.html',
+          'tab-chatlist': {
+            templateUrl: 'templates/chat-detail.html',
             controller: 'ChatCtrl'
           }
         }
