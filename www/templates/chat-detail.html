@@ -1,6 +1,16 @@
 <ion-view view-title="{{data.message}}" hide-tabs>
   <ion-content class="padding">
     <p>Chat with me</p>
-
   </ion-content>
+  <form name="sendMessageForm" novalidate>
+    <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+      <label class="item-input-wrapper">
+        <input id="msg-input"  class="input-message" type="text">
+      </label>
+      <div class="footer-btn-wrap">
+        <button class="button button-icon icon ion-ios-paperplane footer-btn" type="submit">
+        </button>
+      </div>
+    </ion-footer-bar>
+  </form>
 </ion-view>

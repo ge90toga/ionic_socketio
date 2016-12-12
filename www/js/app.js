@@ -16,6 +16,9 @@ angular.module('chat', ['ionic', 'btford.socket-io', 'chat.controllers', 'chat.s
     });
   })
 
+  // Hide tab directive, to hide the tab when chat or other view is on
+  // 1. tabs.html add {{$root.hideTabs}} in <ion-tab>'s class attribute
+  // 2. use hide-tabs directive whenever you need to hide tab (chat-detail.html)
   .directive('hideTabs', function($rootScope) {
     return {
       restrict: 'A',
